@@ -1,6 +1,5 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Containe
+import Container from 'react-bootstrap/Container';
 import React from 'react';
 import Header from './components/Header.js';
 import Main from './components/Main.js';
@@ -21,5 +20,5 @@ class App extends React.Component {
       </>
     );
   }
-
+}
 export default App;

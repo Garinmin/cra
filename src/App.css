@@ -29,14 +29,14 @@
 }
 
 .container-fluid {
-  width: 50%;
+  width: 100%;
 }
 
 .card-columns {
   margin-top: 1rem;
 }
 
-@media only screen and (width: 70%) {
+@media only screen and (width: 100%) {
   .card-columns {
     column-count: 4;
   }
