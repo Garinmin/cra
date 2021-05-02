@@ -1,13 +1,13 @@
 import React from 'react';
+
 import Item from './data.json';
 import { Component } from 'react';
 import { Container, CardColumns, Card, CardDeck } from 'react-bootstrap'
 
-
-
 function Main() {
 
   return (
+    
     <Container fluid>
       <CardColumns>
         {Item.map(item => (
