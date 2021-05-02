@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+.container-fluid {
+  width: 50%;
+}
+
+.card-columns {
+  margin-top: 1rem;
+}
+
+@media only screen and (width: 70%) {
+  .card-columns {
+    column-count: 4;
+  }
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
