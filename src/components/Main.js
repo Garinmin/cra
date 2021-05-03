@@ -1,25 +1,67 @@
 import React from 'react';
 import Item from './data.json';
 import { Component } from 'react';
-import { Container, CardColumns, Card } from 'react-bootstrap';
+import { Container, Card, CardDeck } from 'react-bootstrap';
 import ShowModal from './Modal.js';
+import HornForm from './Form.js';
 
-function Main() {
+class Main extends React.Component {
 
-  return (
+  constructor(props) {
+    super(props);
+    this.state = {
+      hornsArr: [],
+    };
+  }
+
+  filterHorns = (value) => {
+    if (value === 0) {
+      this.setState({ hornsArr: [] });
+    } else { 
+      this.setState({ hornsArr: Item.filter(horns => horns.horns === value) })
+    }
+  }
+
+  render() {
     
-    <Container fluid>
-      <CardColumns>
-        {Item.map(item => (
-          <HornedBeasts
-            title={item.title}
-            description={item.description}
-            imgUrl={item.image_url}
-          />
-        ))}
-      </CardColumns>
-    </Container>
-  );
+    if (this.state.hornsArr.length === 0) {
+      return (
+        <>
+        <Container>
+            <HornForm checkHorns={this.filterHorns} />
+          </Container>
+          <CardDeck>
+            {Item.map(item => (
+              <HornedBeasts
+                title={item.title}
+                imgUrl={item.image_url}
+                description={item.description}
+                horns={item.horns}
+              />
+            ))}
+          </CardDeck>
+        </> 
+      );
+    } else {
+      return (
+        <>
+          <Container>
+            <HornForm checkHorns={this.filterHorns} />
+          </Container>
+          <CardDeck>
+            {this.state.hornsArr.map(item => (
+              <HornedBeasts
+                title={item.title}
+                imgUrl={item.image_url}
+                description={item.description} 
+                horns={item.horns}
+              />
+            ))}
+          </CardDeck>
+        </>
+      );
+    }
+  }
 }
 
 class HornedBeasts extends Component {
@@ -51,15 +93,16 @@ class HornedBeasts extends Component {
           bg="dark"
           text="light"
           onClick={this.addFavorite}
+          style={{ minWidth: "18rem", display: "flex", justifyContent: "space-around", margin: "10px", padding: "10px" }}
         >
           <Card.Img 
             variant="top"
             src={this.props.imgUrl} 
-            
           />
           <Card.Body>
-            <Card.Title>{this.props.title}</Card.Title>
+            <Card.Title><h2>{this.props.title}</h2></Card.Title>
             <Card.Text>
+              <h4>horns = {this.props.horns}</h4>
               😍 = {this.state.likes}
             </Card.Text>
             <Card.Text>
